@@ -3,179 +3,698 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Luiz Miguel</title>
-  </head>
-  <style>
-    body {
-      background-color: #0a192f;
-      color: #dbe2ef;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+    <meta name="description" content="Detalhes do produto - By Pri Tricor" />
+    <title>Camisa Casual - By Pri Tricor</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <style>
+      :root {
+        --color-primary: #8c4a6e;
+        --color-secondary: #b87c9b;
+        --color-accent: #f2c3a7;
+        --color-light: #fff6f0;
+        --color-dark: #3f2235;
+        --color-text: #2c2c2c;
+        --color-success: #7db9b6;
+        --color-warning: #e65c78;
+        --color-border: rgba(0, 0, 0, 0.1);
+        --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 15px 25px rgba(0, 0, 0, 0.15);
+        --transition: all 0.3s ease;
+        --border-radius: 1rem;
+        --max-width: 1200px;
+      }
 
-    header {
-      background-color: #112d4e;
-      text-align: center;
-      padding: 5px;
-      text-transform: uppercase;
-    }
-
-    header h1 {
-      color: #ffffff;
-      margin: 0;
-      font-size: 3rem;
-      letter-spacing: 5px;
-    }
-
-    header p {
-      color: #3f72af;
-      font-style: italic;
-      font-size: 1.5rem;
-      margin: 0;
-      padding: 0;
-      letter-spacing: 10px;
-    }
-
-    main {
-      padding: 10px;
-    }
-
-    .sobreMim,
-    .amigos,
-    .contato {
-      background-color: #112d4e;
-      padding: 15px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
-    
-
-    h2 {
-      color: #f9f7f7;
-      border-bottom: 2px solid #3f72af;
-      padding-bottom: 5px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-    ul{
-        list-style-type: none;
+      * {
+        margin: 0;
         padding: 0;
-    }
-    li{
+        box-sizing: border-box;
+      }
+
+      body,
+      html {
+        font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+          "Helvetica Neue", sans-serif;
+        background-color: var(--color-light);
+        color: var(--color-text);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background-color: var(--color-light);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+      }
+
+      .header.scrolled {
+        padding: 0.7rem 1rem;
+        box-shadow: var(--shadow-md);
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--color-dark);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-icon {
+        color: var(--color-primary);
+        font-size: 1.5rem;
+      }
+
+      .nav-buttons {
+        display: flex;
+        gap: 1rem;
+        position: relative;
+      }
+
+      .nav-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: var(--color-accent);
+        color: var(--color-dark);
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 1.4rem;
+        position: relative;
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: var(--color-warning);
+        color: white;
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+
+      .nav-button:hover {
+        transform: scale(1.1);
+        background-color: var(--color-secondary);
+        color: var(--color-light);
+      }
+
+      .nav-button:focus {
+        outline: 2px solid var(--color-dark);
+        outline-offset: 2px;
+      }
+
+      .product-detail {
+        max-width: var(--max-width);
+        margin: 2rem auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      @media (min-width: 992px) {
+        .product-detail {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .image-gallery {
+        position: relative;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+      }
+
+      .main-image-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-sm);
+        height: 500px;
+        cursor: zoom-in;
+      }
+
+      .main-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+
+      .main-image-container.zoomed .main-image {
+        transform: scale(1.5);
+      }
+
+      .thumbnail-container {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .thumbnail {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 2px solid transparent;
+      }
+
+      .thumbnail:hover,
+      .thumbnail.active {
+        border-color: var(--color-primary);
+      }
+
+      .zoom-notice {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 2rem;
+        font-size: 0.9rem;
+        opacity: 0;
+        transition: var(--transition);
+      }
+
+      .main-image-container:hover .zoom-notice {
+        opacity: 1;
+      }
+
+      .product-info {
+        padding: 1rem;
+      }
+
+      .product-title {
+        font-size: 2.5rem;
+        color: var(--color-dark);
+        margin-bottom: 1rem;
+      }
+
+      .product-rating {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .stars {
+        color: #ffc107;
+      }
+
+      .rating-count {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .product-price {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--color-primary);
+        margin-bottom: 1.5rem;
+      }
+
+      .product-description {
+        margin-bottom: 2rem;
+        line-height: 1.8;
+      }
+
+      .variant-section {
+        margin-bottom: 2rem;
+      }
+
+      .variant-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--color-dark);
+      }
+
+      .variant-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+
+      .variant-option {
+        padding: 0.8rem 1.5rem;
+        border: 2px solid var(--color-border);
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: var(--transition);
+        background-color: white;
+        font-weight: 500;
+      }
+
+      .variant-option:hover {
+        border-color: var(--color-primary);
+      }
+
+      .variant-option.selected {
+        border-color: var(--color-primary);
+        background-color: var(--color-primary);
+        color: white;
+      }
+
+      .variant-option.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        text-decoration: line-through;
+      }
+
+      .quantity-selector {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .quantity-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .quantity-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .quantity-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid var(--color-border);
+        background-color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .quantity-btn:hover {
+        background-color: var(--color-accent);
+      }
+
+      .quantity-value {
+        font-size: 1.3rem;
+        min-width: 40px;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 400px;
+      }
+
+      .action-btn {
+        padding: 1.2rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
         text-transform: uppercase;
         letter-spacing: 1px;
-        line-height: 1.5;
-    }
+      }
 
-    a {
-      color: #3f72af;
-      text-decoration: none;
-      font-weight: bold;
-    }
+      .buy-now-btn {
+        background-color: var(--color-success);
+        color: white;
+      }
 
-    a:hover {
-      color: #f9f7f7;
-    }
+      .buy-now-btn:hover {
+        background-color: #5a9e9b;
+        transform: translateY(-3px);
+      }
 
-    footer {
-      background-color: #112d4e;
-      text-align: center;
-      padding: 10px;
-      margin-top: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-family: sans-serif;
-    }
-    .sobreMim p{
-        letter-spacing: 1px;
-        line-height: 1.5;
-        text-align: left;
-    }
-  </style>
+      .add-to-cart-btn {
+        background-color: var(--color-secondary);
+        color: white;
+      }
+
+      .add-to-cart-btn:hover {
+        background-color: var(--color-primary);
+        transform: translateY(-3px);
+      }
+
+      .product-details {
+        margin-top: 3rem;
+        border-top: 1px solid var(--color-border);
+        padding-top: 2rem;
+      }
+
+      .details-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: var(--color-dark);
+      }
+
+      .details-list {
+        list-style: none;
+      }
+
+      .details-item {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid var(--color-border);
+        display: flex;
+      }
+
+      .detail-label {
+        font-weight: 600;
+        min-width: 150px;
+      }
+
+      @media (max-width: 768px) {
+        .product-title {
+          font-size: 2rem;
+        }
+
+        .main-image-container {
+          height: 400px;
+        }
+
+        .action-buttons {
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .product-title {
+          font-size: 1.8rem;
+        }
+
+        .main-image-container {
+          height: 300px;
+        }
+
+        .variant-options {
+          gap: 0.5rem;
+        }
+
+        .variant-option {
+          padding: 0.6rem 1rem;
+        }
+
+        .action-btn {
+          padding: 1rem;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
   <body>
-    <header>
-      <h1>Luiz Miguel</h1>
-      <p>spadachim-da-nevoa</p>
+    <header class="header">
+      <a href="#" class="logo">
+        <i class="bi bi-stars logo-icon"></i>
+        By Pri Tricor
+      </a>
+
+      <div class="nav-buttons">
+        <button class="nav-button" id="menuButton" aria-label="Abrir menu">
+          <i class="bi bi-three-dots"></i>
+        </button>
+        <button class="nav-button" id="cartButton" aria-label="Abrir carrinho">
+          <i class="bi bi-bag"></i>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+      </div>
     </header>
-    <main>
-      <section class="sobreMim">
-        <h2>sobre mim</h2>
-        <p>
-          Olá! Meu nome é Luiz Miguel e criei este blog para que as pessoas
-          possam me conhecer melhor. Desde pequeno, sempre tive uma mentalidade
-          diferente, sonhando alto e acreditando que posso mudar o mundo. Meu
-          maior objetivo é alcançar o sucesso e construir uma vida próspera.
-        </p>
-        <p>
-          Minha paixão sempre foi a eletricidade. Já criei meu próprio gerador
-          elétrico e me fascina a ideia de transformar energia e inovação em
-          algo útil para o mundo. Além disso, tive muitas experiências que me
-          moldaram, como trabalhar desde muito cedo e até mesmo algumas
-          aventuras inesquecíveis fugindo com meus amigos.
-        </p>
-        <p>
-          Um dos maiores desafios que enfrentei foi a descrença das pessoas ao
-          meu redor. Sempre me disseram que eu não conseguiria, que meus sonhos
-          eram grandes demais. Mas, ao invés de desistir, isso me tornou ainda
-          mais confiante e competitivo. Eu gosto de provar que sou capaz.
-        </p>
-        <p>
-          Algo que muitos admiram em mim é minha força física. Sou dedicado e
-          determinado em tudo o que faço, e isso reflete no meu corpo e na minha
-          postura diante da vida. Mas o que realmente quero no futuro vai além
-          da força: quero ser inteligente, ganhar respeito e conquistar o
-          sucesso que tanto almejo.
-        </p>
-        <p>
-          Este blog é um espaço para compartilhar minha jornada, pensamentos e
-          ideias. Se você chegou até aqui, seja bem-vindo!
-        </p>
+
+    <main id="main-content" class="product-detail">
+      <section class="image-gallery">
+        <div class="main-image-container" id="mainImageContainer">
+          <img
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+            alt="Camisa Casual Feminina"
+            class="main-image"
+            id="mainImage"
+          />
+          <div class="zoom-notice">Passe o mouse para zoom</div>
+        </div>
+
+        <div class="thumbnail-container">
+          <img
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+            alt="Camisa Casual Feminina - Vista frontal"
+            class="thumbnail active"
+            data-fullsize="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80"
+            alt="Camisa Casual Feminina - Detalhe do tecido"
+            class="thumbnail"
+            data-fullsize="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=800&q=80"
+            alt="Camisa Casual Feminina - Vista de costas"
+            class="thumbnail"
+            data-fullsize="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=800&q=80"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=800&q=80"
+            alt="Camisa Casual Feminina - Vista lateral"
+            class="thumbnail"
+            data-fullsize="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=800&q=80"
+          />
+        </div>
       </section>
-      <section class="amigos">
-        <h2>Amigos</h2>
-        <ul>
-          <li>
-            Adm-Samuel:<a href="https://www.instagram.com/fx_dev_javascript/"
-              >@fx_dev_javascript</a
-            >
-          </li>
-          <li>
-            Arthur:<a href="https://www.instagram.com/artbberriel/"
-              >@artbberriel</a
-            >
-          </li>
-          <li>
-            Alex:<a href="https://www.instagram.com/alexsander_slx/"
-              >@alexsander_slx</a
-            >
-          </li>
-          <li>
-            Danilo:<a href="https://www.instagram.com/danilosantana_21/"
-              >@danilosantana_21</a
-            >
-          </li>
-          <li>Max:<a href="https://www.instagram.com/maxxz.021/">@maxxz</a></li>
-        </ul>
-      </section>
-      <section class="contato">
-        <h2>contato</h2>
-        <ul>
-          <li>
-            Siga-me lá no instagram:<a
-              href="https://www.instagram.com/luizmiguel51000/"
-              >@luizmiguel51000
-            </a>
-          </li>
-          <li>
-            Chama-me no Whatsapp:
-            <a href="https://wa.me/5521959372677" target="_blank"
-              >(21) 959372677</a
-            >
-          </li>
-        </ul>
+
+      <section class="product-info">
+        <h1 class="product-title">Camisa Casual Feminina</h1>
+
+        <div class="product-rating">
+          <div class="stars">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+          </div>
+          <span class="rating-count">(128 avaliações)</span>
+        </div>
+
+        <p class="product-price">R$ 140,98</p>
+
+        <p class="product-description">
+          Camisa casual feminina de alta qualidade, perfeita para o dia a dia.
+          Feita com tecido 100% algodão, proporciona conforto e durabilidade.
+          Disponível em diversas cores e tamanhos para melhor atender às suas
+          necessidades.
+        </p>
+
+        <div class="variant-section">
+          <h3 class="variant-title">Cor:</h3>
+          <div class="variant-options" id="colorOptions">
+            <div class="variant-option selected" data-value="branco">
+              Branco
+            </div>
+            <div class="variant-option" data-value="preto">Preto</div>
+            <div class="variant-option" data-value="azul">Azul Marinho</div>
+            <div class="variant-option" data-value="rosa">Rosa</div>
+          </div>
+        </div>
+
+        <div class="variant-section">
+          <h3 class="variant-title">Tamanho:</h3>
+          <div class="variant-options" id="sizeOptions">
+            <div class="variant-option" data-value="pp">PP</div>
+            <div class="variant-option" data-value="p">P</div>
+            <div class="variant-option selected" data-value="m">M</div>
+            <div class="variant-option" data-value="g">G</div>
+            <div class="variant-option" data-value="gg">GG</div>
+            <div class="variant-option disabled" data-value="xg">XG</div>
+          </div>
+        </div>
+
+        <div class="quantity-selector">
+          <span class="quantity-title">Quantidade:</span>
+          <div class="quantity-controls">
+            <button class="quantity-btn" id="decreaseQuantity">-</button>
+            <span class="quantity-value" id="quantityValue">1</span>
+            <button class="quantity-btn" id="increaseQuantity">+</button>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="action-btn buy-now-btn">
+            <i class="bi bi-lightning"></i> Comprar agora
+          </button>
+          <button class="action-btn add-to-cart-btn" id="addToCartBtn">
+            <i class="bi bi-bag-plus"></i> Adicionar ao carrinho
+          </button>
+        </div>
+
+        <div class="product-details">
+          <h2 class="details-title">Detalhes do Produto</h2>
+          <ul class="details-list">
+            <li class="details-item">
+              <span class="detail-label">Material:</span>
+              <span>100% Algodão</span>
+            </li>
+            <li class="details-item">
+              <span class="detail-label">Cuidados:</span>
+              <span>Lavar a mão, não usar alvejante</span>
+            </li>
+            <li class="details-item">
+              <span class="detail-label">Origem:</span>
+              <span>Produzido no Brasil</span>
+            </li>
+          </ul>
+        </div>
       </section>
     </main>
-    <footer><p>© 2025 Luiz Miguel - Todos os direitos reservados.</p></footer>
+
+    <script>
+      const mainImage = document.getElementById("mainImage");
+      const mainImageContainer = document.getElementById("mainImageContainer");
+      const thumbnails = document.querySelectorAll(".thumbnail");
+
+      thumbnails.forEach((thumb) => {
+        thumb.addEventListener("click", function () {
+          const newSrc = this.getAttribute("data-fullsize");
+          mainImage.src = newSrc;
+
+          document
+            .querySelector(".thumbnail.active")
+            .classList.remove("active");
+          this.classList.add("active");
+        });
+      });
+
+      mainImageContainer.addEventListener("mousemove", function (e) {
+        if (!this.classList.contains("zoomed")) return;
+
+        const containerRect = this.getBoundingClientRect();
+        const mouseX = e.clientX - containerRect.left;
+        const mouseY = e.clientY - containerRect.top;
+
+        const percentX = (mouseX / containerRect.width) * 100;
+        const percentY = (mouseY / containerRect.height) * 100;
+
+        mainImage.style.transformOrigin = `${percentX}% ${percentY}%`;
+      });
+
+      mainImageContainer.addEventListener("click", function () {
+        this.classList.toggle("zoomed");
+
+        if (!this.classList.contains("zoomed")) {
+          mainImage.style.transformOrigin = "center";
+        }
+      });
+
+      const quantityValue = document.getElementById("quantityValue");
+      const decreaseQuantity = document.getElementById("decreaseQuantity");
+      const increaseQuantity = document.getElementById("increaseQuantity");
+
+      let quantity = 1;
+
+      decreaseQuantity.addEventListener("click", function () {
+        if (quantity > 1) {
+          quantity--;
+          quantityValue.textContent = quantity;
+        }
+      });
+
+      increaseQuantity.addEventListener("click", function () {
+        quantity++;
+        quantityValue.textContent = quantity;
+      });
+
+      const colorOptions = document.querySelectorAll(
+        "#colorOptions .variant-option"
+      );
+      const sizeOptions = document.querySelectorAll(
+        "#sizeOptions .variant-option"
+      );
+
+      colorOptions.forEach((option) => {
+        option.addEventListener("click", function () {
+          if (this.classList.contains("disabled")) return;
+
+          document
+            .querySelector("#colorOptions .variant-option.selected")
+            .classList.remove("selected");
+          this.classList.add("selected");
+        });
+      });
+
+      sizeOptions.forEach((option) => {
+        option.addEventListener("click", function () {
+          if (this.classList.contains("disabled")) return;
+
+          document
+            .querySelector("#sizeOptions .variant-option.selected")
+            .classList.remove("selected");
+          this.classList.add("selected");
+        });
+      });
+
+      const addToCartBtn = document.getElementById("addToCartBtn");
+      const cartBadge = document.getElementById("cartBadge");
+
+      addToCartBtn.addEventListener("click", function () {
+        const selectedColor = document
+          .querySelector("#colorOptions .variant-option.selected")
+          .getAttribute("data-value");
+        const selectedSize = document
+          .querySelector("#sizeOptions .variant-option.selected")
+          .getAttribute("data-value");
+
+        this.innerHTML =
+          '<i class="bi bi-check-lg"></i> Adicionado ao Carrinho!';
+        this.style.backgroundColor = "var(--color-success)";
+
+        setTimeout(() => {
+          this.innerHTML =
+            '<i class="bi bi-bag-plus"></i> Adicionar ao carrinho';
+          this.style.backgroundColor = "var(--color-secondary)";
+        }, 2000);
+
+        let currentCount = parseInt(cartBadge.textContent);
+        cartBadge.textContent = currentCount + quantity;
+
+        console.log(
+          `Adicionado ao carrinho: Camisa Casual, Cor: ${selectedColor}, Tamanho: ${selectedSize}, Quantidade: ${quantity}`
+        );
+      });
+    </script>
   </body>
 </html>
